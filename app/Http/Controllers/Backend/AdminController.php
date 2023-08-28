@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -12,8 +13,21 @@ class AdminController extends Controller
      */
     public function adminDashboard()
     {
-        return view('backend.admin.admin_dashboard');
+        return view('backend.admin.admin_index');
     }
+
+    public function adminLogout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -62,4 +76,6 @@ class AdminController extends Controller
     {
         //
     }
+
+
 }
