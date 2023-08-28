@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -24,11 +25,46 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/admin/login');
     }
 
 
+    public function adminLogin(){
+        return view('backend.admin.admin_login');
+    }
 
+    public function adminProfile(){
+        $id = Auth::user()->id;
+        $profile_data = User::find($id);
+        return view('backend.admin.admin_profile' , compact('profile_data'));
+    }
+
+    public function adminProfileStore(Request $request){
+        $id =Auth::user()->id;
+        $user_data = User::find($id);
+        $user_data->name = $request->name;
+        $user_data->username = $request->username;
+        $user_data->email = $request->email;
+        $user_data->phone = $request->phone;
+        $user_data->address = $request->address;
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('uploads/admin_images/'. $user_data->photo));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('uploads/admin_images') , $filename);
+            $user_data['photo'] = $filename;
+
+        }
+
+        $user_data->save();
+        $notification = array(
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    }
     /**
      * Show the form for creating a new resource.
      */

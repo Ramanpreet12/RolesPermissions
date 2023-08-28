@@ -32,10 +32,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('admin/login' , [AdminController::class , 'adminLogin'])->name('admin.login');
 //applying role middleware for admin
 Route::middleware(['auth' , 'role:admin'])->group(function(){
     //for Admin
     Route::get('/admin/dashboard' , [AdminController::class , 'adminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/profile' , [AdminController::class , 'adminProfile'])->name('admin.profile');
+    Route::post('/admin/profile/store' , [AdminController::class , 'adminProfileStore'])->name('admin.profile.store');
     Route::get('/admin/logout' , [AdminController::class , 'adminLogout'])->name('admin.logout');
 
 });
