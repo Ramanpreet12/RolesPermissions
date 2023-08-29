@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use Auth , Hash;
+use Illuminate\View\View;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -29,7 +30,7 @@ class AdminController extends Controller
     }
 
 
-    public function adminLogin(){
+    public function adminLogin() {
         return view('backend.admin.admin_login');
     }
 
@@ -54,15 +55,47 @@ class AdminController extends Controller
             $filename = date('YmdHi').$file->getClientOriginalName();
             $file->move(public_path('uploads/admin_images') , $filename);
             $user_data['photo'] = $filename;
-
         }
-
         $user_data->save();
         $notification = array(
             'message' => 'Admin Profile Updated Successfully',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+
+    }
+
+    public function adminChangePassword() : View{
+        $id = Auth::user()->id;
+        $profile_data = User::find($id);
+        return view('backend.admin.admin_password' , compact('profile_data'));
+    }
+
+    public function adminUpdatePassword(Request $request){
+       $request->validate([
+        'old_password' => 'required',
+        'new_password' => 'required|confirmed'
+       ]);
+       //check the old password
+       if (!Hash::check($request->old_password, Auth::user()->password) ) {
+        $notification = array(
+            'message' => 'Old Password in Invalid',
+            'alert-type' => 'error'
+        );
+        return back()->with($notification);
+
+        }
+
+        //update new password
+        User::whereId(Auth::user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+        $notification = array(
+            'message' => 'Password Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
+
 
     }
     /**

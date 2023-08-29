@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AgentController;
+use App\Http\Controllers\Backend\PropertyTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +36,26 @@ require __DIR__.'/auth.php';
 Route::get('admin/login' , [AdminController::class , 'adminLogin'])->name('admin.login');
 //applying role middleware for admin
 Route::middleware(['auth' , 'role:admin'])->group(function(){
-    //for Admin
-    Route::get('/admin/dashboard' , [AdminController::class , 'adminDashboard'])->name('admin.dashboard');
-    Route::get('/admin/profile' , [AdminController::class , 'adminProfile'])->name('admin.profile');
-    Route::post('/admin/profile/store' , [AdminController::class , 'adminProfileStore'])->name('admin.profile.store');
-    Route::get('/admin/logout' , [AdminController::class , 'adminLogout'])->name('admin.logout');
+
+    Route::prefix('admin/')->name('admin.')->group(function(){
+        //for Admin settings
+        Route::controller(AdminController::class)->group(function(){
+            Route::get('dashboard' , 'adminDashboard')->name('dashboard');
+            Route::get('profile' , 'adminProfile')->name('profile');
+            Route::post('profile/store' ,'adminProfileStore')->name('profile.store');
+            Route::get('change-password' , 'adminChangePassword')->name('change-password');
+            Route::post('update-password' ,'adminUpdatePassword')->name('update-password');
+            Route::get('slogout' , 'adminLogout')->name('logout');
+        });
+
+        //for property types
+
+        Route::resources(['all-types' => PropertyTypeController::class]);
+        Route::get('all-types/delete/{id}' , [PropertyTypeController::class , 'typeDelete'])->name('all-types.delete');
+    });
+
+
+
 
 });
 
