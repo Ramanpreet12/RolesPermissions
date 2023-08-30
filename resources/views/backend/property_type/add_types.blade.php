@@ -13,13 +13,13 @@
                                 <div class="mb-3">
                                     <label for="type_name" class="form-label">Type Name</label>
                                     <input type="text" class="form-control @error('type_name') is-invalid @enderror" id="type_name" autocomplete="off"
-                                        placeholder="Enter Old Password" name="type_name" >
+                                        placeholder="Enter Property Type Type" name="type_name" >
                                        @error('type_name')<span class="text-danger">{{ ($message) }}</span> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="type_icon" class="form-label">Type Icon</label>
                                     <input type="text" class="form-control @error('type_icon') is-invalid @enderror" id="type_icon" autocomplete="off"
-                                        placeholder="Enter Old Password" name="type_icon" >
+                                        placeholder="Enter Property Type Icon" name="type_icon" >
                                        @error('type_icon')<span class="text-danger">{{ ($message) }}</span> @enderror
                                 </div>
                                 <button type="submit" class="btn btn-primary me-2 mt-2">Add</button>

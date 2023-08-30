@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AgentController;
 use App\Http\Controllers\Backend\PropertyTypeController;
+use App\Http\Controllers\Backend\AmenitiesController;
+use App\Http\Controllers\Backend\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +54,15 @@ Route::middleware(['auth' , 'role:admin'])->group(function(){
 
         Route::resources(['all-types' => PropertyTypeController::class]);
         Route::get('all-types/delete/{id}' , [PropertyTypeController::class , 'typeDelete'])->name('all-types.delete');
+
+        //for amenities
+        Route::resources(['amenities' => AmenitiesController::class]);
+        Route::get('amenities/delete/{id}' , [AmenitiesController::class , 'amenityDelete'])->name('amenities.delete');
+
+         //for Role  & permission
+         Route::resources(['permissions' => RoleController::class]);
+         Route::get('permissions/delete/{id}' , [RoleController::class , 'PermissionDelete'])->name('permissions.delete');
+
     });
 
 

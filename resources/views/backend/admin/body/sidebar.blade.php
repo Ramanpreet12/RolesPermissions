@@ -20,8 +20,8 @@
             </li>
             <li class="nav-item nav-category">Real State</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button"
-                    aria-expanded="false" aria-controls="emails">
+                <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
+                    aria-controls="emails">
                     <i class="link-icon" data-feather="mail"></i>
                     <span class="link-title">Properties</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
@@ -32,7 +32,7 @@
                             <a href="{{ route('admin.all-types.index') }}" class="nav-link">All Types</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Read</a>
+                            <a href="{{ route('admin.all-types.create') }}" class="nav-link">Add Types</a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/email/compose.html" class="nav-link">Compose</a>
@@ -47,18 +47,18 @@
                     <span class="link-title">Calendar</span>
                 </a>
             </li>
-            <li class="nav-item nav-category">Components</li>
+            <li class="nav-item nav-category">Amenities</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button"
-                    aria-expanded="false" aria-controls="uiComponents">
+                <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
+                    aria-controls="uiComponents">
                     <i class="link-icon" data-feather="feather"></i>
-                    <span class="link-title">UI Kit</span>
+                    <span class="link-title">Amenities</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="uiComponents">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/ui-components/accordion.html" class="nav-link">Accordion</a>
+                            <a href="{{ route('admin.amenities.index') }}" class="nav-link">All Amenities </a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/ui-components/alerts.html" class="nav-link">Alerts</a>
@@ -74,9 +74,38 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="nav-item nav-category">Roles & Permissions</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button"
-                    aria-expanded="false" aria-controls="advancedUI">
+                <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
+                    aria-controls="uiComponents">
+                    <i class="link-icon" data-feather="feather"></i>
+                    <span class="link-title">Permissions</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="uiComponents">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.permissions.index') }}" class="nav-link">All Permissions </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/ui-components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/ui-components/badges.html" class="nav-link">Badges</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/ui-components/breadcrumbs.html" class="nav-link">Breadcrumbs</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false"
+                    aria-controls="advancedUI">
                     <i class="link-icon" data-feather="anchor"></i>
                     <span class="link-title">Advanced UI</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>

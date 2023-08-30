@@ -48,6 +48,13 @@ License: For each use you must have a valid license purchased only from above li
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 	<!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css')}}">
+
+    <style>
+        .swal2-popup .swal2-actions button.swal2-cancel ,
+        .swal2-popup .swal2-actions button.swal2-confirm{
+            border: none;
+        }
+    </style>
 	<!-- End plugin css for this page -->
 </head>
 
@@ -100,6 +107,8 @@ License: For each use you must have a valid license purchased only from above li
 {{-- sweetalert --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<!-- javascript validation  js for this page -->
+<script src="{{ asset('backend/assets/js/custom/validate.min.js') }}"></script>
 	<!-- Custom js for this page -->
     <script src="{{ asset('backend/assets/js/custom/code.js') }}"></script>
 	<!-- End custom js for this page -->
