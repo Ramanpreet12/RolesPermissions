@@ -1,15 +1,23 @@
 @extends('backend.admin.admin_dashboard')
 @section('admin')
     <div class="page-content">
-
-        <nav class="page-breadcrumb">
-            <ol class="breadcrumb">
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between">
+            <div>
                 <a href="{{ route('admin.permissions.create') }}"><button type="button" class="btn btn-primary">Add
                         Permission</button></a>
-                {{-- <li class="breadcrumb-item"><a href="#">Tables</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data Table</li> --}}
-            </ol>
-        </nav>
+            </div>
+
+            <div>
+                <a href="{{ route('admin.permission.import') }}"><button type="button" class="btn btn-warning">
+                        Import</button></a>
+                <a href="{{ route('admin.permission.export') }}"><button type="button" class="btn btn-warning">
+                        Export</button></a>
+            </div>
+        </div>
+         </div>
+       </div>
 
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
@@ -49,11 +57,12 @@
                                                             <i class="btn-icon-prepend" data-feather="trash" width="15px"
                                                                 height="15px"></i> Delete</button> --}}
 
-                                                                <a href="{{ route('admin.permissions.delete', $permission->id) }}" id="delete">
-                                                                    <button type="button" class="btn btn-danger">
-                                                                        <i class="btn-icon-prepend" data-feather="trash" width="15px"
+                                                    <a href="{{ route('admin.permissions.delete', $permission->id) }}"
+                                                        id="delete">
+                                                        <button type="button" class="btn btn-danger">
+                                                            <i class="btn-icon-prepend" data-feather="trash" width="15px"
                                                                 height="15px"></i>
-                                                                        Delete</button></a>
+                                                            Delete</button></a>
 
 
                                                     </form>

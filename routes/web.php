@@ -62,6 +62,9 @@ Route::middleware(['auth' , 'role:admin'])->group(function(){
          //for Role  & permission
          Route::resources(['permissions' => RoleController::class]);
          Route::get('permissions/delete/{id}' , [RoleController::class , 'PermissionDelete'])->name('permissions.delete');
+         Route::get('permission/import' , [RoleController::class , 'PermissionImport'])->name('permission.import');
+         Route::get('permission/export' , [RoleController::class , 'export'])->name('permission.export');
+         Route::post('permission/import' , [RoleController::class , 'import'])->name('permission.import');
 
     });
 
